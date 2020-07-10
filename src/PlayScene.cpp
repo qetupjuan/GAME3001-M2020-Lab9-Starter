@@ -44,11 +44,19 @@ void PlayScene::handleEvents()
 			{
 				m_pPlayer->setAnimationState(PLAYER_RUN_RIGHT);
 				m_playerFacingRight = true;
+
+				m_pPlayer->getRigidBody()->velocity = glm::vec2(5.0f, 0.0f);
+				m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
+				m_pPlayer->getRigidBody()->velocity *= m_pPlayer->getRigidBody()->velocity * 0.9f;
 			}
 			else if (EventManager::Instance().getGameController(0)->LEFT_STICK_X < -deadZone)
 			{
 				m_pPlayer->setAnimationState(PLAYER_RUN_LEFT);
 				m_playerFacingRight = false;
+
+				m_pPlayer->getRigidBody()->velocity = glm::vec2(-5.0f, 0.0f);
+				m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
+				m_pPlayer->getRigidBody()->velocity *= m_pPlayer->getRigidBody()->velocity * 0.9f;
 			}
 			else
 			{
@@ -72,11 +80,19 @@ void PlayScene::handleEvents()
 		{
 			m_pPlayer->setAnimationState(PLAYER_RUN_LEFT);
 			m_playerFacingRight = false;
+
+			m_pPlayer->getRigidBody()->velocity = glm::vec2(-5.0f, 0.0f);
+			m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
+			m_pPlayer->getRigidBody()->velocity *= m_pPlayer->getRigidBody()->velocity * 0.9f;
 		}
 		else if (EventManager::Instance().isKeyDown(SDL_SCANCODE_D))
 		{
 			m_pPlayer->setAnimationState(PLAYER_RUN_RIGHT);
 			m_playerFacingRight = true;
+
+			m_pPlayer->getRigidBody()->velocity = glm::vec2(5.0f, 0.0f);
+			m_pPlayer->getTransform()->position += m_pPlayer->getRigidBody()->velocity;
+			m_pPlayer->getRigidBody()->velocity *= m_pPlayer->getRigidBody()->velocity * 0.9f;
 		}
 		else
 		{

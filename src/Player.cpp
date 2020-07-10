@@ -19,6 +19,7 @@ Player::Player(): m_currentAnimationState(PLAYER_IDLE_RIGHT)
 	getTransform()->position = glm::vec2(600.0f, 500.0f);
 	getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
 	getRigidBody()->acceleration = glm::vec2(0.0f, 0.0f);
+	getRigidBody()->maxSpeed = 10.0f;
 	getRigidBody()->isColliding = false;
 	setType(PLAYER);
 
