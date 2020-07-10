@@ -1,6 +1,7 @@
 #include "PlayScene.h"
 #include "Game.h"
 #include "EventManager.h"
+#include "Util.h"
 
 PlayScene::PlayScene()
 {
@@ -13,11 +14,15 @@ PlayScene::~PlayScene()
 void PlayScene::draw()
 {
 	drawDisplayList();
+
+	Util::DrawLine(m_pPlayer->getTransform()->position, m_pPlaneSprite->getTransform()->position);
 }
 
 void PlayScene::update()
 {
 	updateDisplayList();
+
+	CollisionManager::LOSCheck(m_pPlayer, m_pPlaneSprite, m_pObstacle);
 }
 
 void PlayScene::clean()
@@ -114,5 +119,8 @@ void PlayScene::start()
 	addChild(m_pPlayer);
 	m_playerFacingRight = true;
 
+	// Obstacle Texture
+	m_pObstacle = new Obstacle();
+	addChild(m_pObstacle);
 	
 }

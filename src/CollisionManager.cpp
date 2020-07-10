@@ -204,6 +204,27 @@ bool CollisionManager::lineAABBCheck(Ship* object1, GameObject* object2)
 	return false;
 }
 
+bool CollisionManager::LOSCheck(DisplayObject* from, DisplayObject* to, DisplayObject* obstacle)
+{
+	const auto lineStart = from->getTransform()->position;
+	const auto lineEnd = to->getTransform()->position;
+	// aabb
+	const auto boxWidth = obstacle->getWidth();
+	const int halfBoxWidth = boxWidth * 0.5f;
+	const auto boxHeight = obstacle->getHeight();
+	const int halfBoxHeight = boxHeight * 0.5f;
+	const auto boxStart = obstacle->getTransform()->position - glm::vec2(halfBoxWidth, halfBoxHeight);
+
+	if (lineRectCheck(lineStart, lineEnd, boxStart, boxWidth, boxHeight))
+	{
+		std::cout << "No LOS - Collision with Obstacle!" << std::endl;
+		
+		return false;
+	}
+
+	return true;
+}
+
 int CollisionManager::circleAABBsquaredDistance(const glm::vec2 circle_centre, int circle_radius, const glm::vec2 box_start, const int box_width, const int box_height)
 {
 	auto dx = std::max(box_start.x - circle_centre.x, 0.0f);

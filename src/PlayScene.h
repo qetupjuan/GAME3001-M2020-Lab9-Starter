@@ -6,6 +6,7 @@
 #include "Plane.h"
 #include "Player.h"
 #include "Button.h"
+#include "Obstacle.h"
 
 class PlayScene : public Scene
 {
@@ -26,6 +27,7 @@ private:
 	Player* m_pPlayer;
 	bool m_playerFacingRight;
 
+	Obstacle* m_pObstacle;
 	
 };
 
