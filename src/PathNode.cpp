@@ -4,8 +4,8 @@
 PathNode::PathNode()
 	:m_bLOS(false)
 {
-	setWidth(40);
-	setHeight(40);
+	setWidth(Config::TILE_SIZE);
+	setHeight(Config::TILE_SIZE);
 	setType(PATH_NODE);
 }
 
